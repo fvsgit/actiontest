@@ -13,5 +13,5 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-            files: myfile.md
+            files: ./myfile.md
         if: startsWith(github.ref, 'refs/head/')
