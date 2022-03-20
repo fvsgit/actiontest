@@ -7,11 +7,12 @@ on:
 jobs:
   release_and_build:
     runs-on: ubuntu-latest 
+    permissions:
+      contents: write
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        with:
-            files: ./myfile.md
-        if: startsWith(github.ref, 'refs/head/')
+    - uses: actions/checkout@v2
+    - uses: ncipollo/release-action@v1
+      with:
+        artifacts: "release.tar.gz,foo/*.txt"
+        bodyFile: "body.md"
+        token: ${{ secrets.GITHUB_TOKEN }}
